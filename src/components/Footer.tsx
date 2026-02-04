@@ -1,6 +1,11 @@
 import { Linkedin, Twitter } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Footer = () => {
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { once: true, margin: "-50px" });
+
   const links = [
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
@@ -14,7 +19,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t border-border/50 py-12">
+    <motion.footer 
+      ref={footerRef}
+      className="border-t border-border/50 py-12"
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Copyright */}
@@ -63,7 +74,7 @@ const Footer = () => {
           © {new Date().getFullYear()} Beyond Cloud Advisors. All rights reserved.
         </p>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
