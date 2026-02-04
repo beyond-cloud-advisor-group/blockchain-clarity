@@ -13,63 +13,61 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
+    <header className="fixed top-4 left-0 right-0 z-50 px-4">
+      <div className="max-w-5xl mx-auto">
+        <nav className="glass-nav px-4 py-2.5 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center glow-box">
-              <span className="text-primary font-display font-bold text-xl">B</span>
+          <a href="#" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center">
+              <span className="text-white font-bold text-sm">B</span>
             </div>
-            <span className="font-display font-semibold text-lg hidden sm:block">
-              Beyond Cloud Advisors
-            </span>
+            <span className="font-semibold text-sm hidden sm:block">Beyond Cloud</span>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium"
+                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
                 {item.label}
               </a>
             ))}
-          </nav>
+          </div>
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button variant="hero" size="default">
+            <Button variant="hero" size="sm">
               Get Started
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground p-2"
+            className="md:hidden text-foreground p-2 hover:bg-secondary rounded-lg transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </div>
+        </nav>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-6 border-t border-border/50">
-            <nav className="flex flex-col gap-4">
+          <div className="md:hidden mt-2 glass-card p-4">
+            <nav className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-base font-medium py-2"
+                  className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-all"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
-              <Button variant="hero" size="lg" className="mt-4">
+              <Button variant="hero" size="default" className="mt-3">
                 Get Started
               </Button>
             </nav>
