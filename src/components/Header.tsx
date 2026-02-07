@@ -8,9 +8,20 @@ const Header = () => {
   const navItems = [
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
+    { label: "Insights", href: "#insights" },
+    { label: "FAQ", href: "#faq" },
     { label: "Why Us", href: "#why-us" },
     { label: "Contact", href: "#contact" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 px-4">
@@ -30,6 +41,7 @@ const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
                 {item.label}
@@ -62,7 +74,7 @@ const Header = () => {
                   key={item.label}
                   href={item.href}
                   className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-all"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.label}
                 </a>
