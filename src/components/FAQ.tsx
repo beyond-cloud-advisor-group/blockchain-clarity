@@ -42,7 +42,7 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section className="py-24 border-t border-border/30 relative overflow-hidden">
+    <section id="faq" className="py-24 border-t border-border/30 relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="glow-orb w-[400px] h-[400px] bg-primary/6 top-0 right-0" />
 

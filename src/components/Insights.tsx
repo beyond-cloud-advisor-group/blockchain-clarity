@@ -127,7 +127,7 @@ const ArticleCard = ({ article }: { article: (typeof articles)[0] }) => (
 
 const Insights = () => {
   return (
-    <section className="py-24 border-t border-border/30">
+    <section id="insights" className="py-24 border-t border-border/30">
       <div className="container mx-auto px-6">
         <AnimatedSection>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14">
