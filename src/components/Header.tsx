@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -13,6 +14,30 @@ const Header = () => {
     { label: "Why Us", href: "#why-us" },
     { label: "Contact", href: "#contact" },
   ];
+
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -30,23 +55,30 @@ const Header = () => {
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">B</span>
+              <span className="text-primary-foreground font-bold text-sm">B</span>
             </div>
             <span className="font-semibold text-sm hidden sm:block">Beyond Cloud</span>
           </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.replace("#", "");
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`px-4 py-2 text-sm rounded-full transition-all duration-300 ${
+                    isActive
+                      ? "text-primary-foreground bg-primary/15 font-medium"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* CTA Button */}
@@ -69,16 +101,23 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-2 glass-card p-4">
             <nav className="flex flex-col gap-1">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-all"
-                  onClick={(e) => handleNavClick(e, item.href)}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href.replace("#", "");
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={`px-4 py-3 text-sm rounded-lg transition-all ${
+                      isActive
+                        ? "text-primary-foreground bg-primary/15 font-medium"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    }`}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
               <Button variant="hero" size="default" className="mt-3">
                 Get Started
               </Button>
