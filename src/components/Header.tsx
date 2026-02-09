@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,7 +55,7 @@ const Header = () => {
         <nav className="glass-nav px-4 py-2.5 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-orange-500 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">B</span>
             </div>
             <span className="font-semibold text-sm hidden sm:block">Beyond Cloud</span>
@@ -81,20 +82,24 @@ const Header = () => {
             })}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Theme Toggle & CTA Button */}
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
             <Button variant="hero" size="sm">
               Get Started
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground p-2 hover:bg-secondary rounded-lg transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile: Theme Toggle & Menu Button */}
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
+            <button
+              className="text-foreground p-2 hover:bg-secondary rounded-lg transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Navigation */}
