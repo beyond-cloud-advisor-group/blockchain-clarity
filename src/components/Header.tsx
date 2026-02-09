@@ -10,9 +10,9 @@ const Header = () => {
   const navItems = [
     { label: "About", href: "#about" },
     { label: "Services", href: "#services" },
+    { label: "Pricing", href: "#pricing" },
     { label: "Insights", href: "#insights" },
     { label: "FAQ", href: "#faq" },
-    { label: "Why Us", href: "#why-us" },
     { label: "Contact", href: "#contact" },
   ];
 
