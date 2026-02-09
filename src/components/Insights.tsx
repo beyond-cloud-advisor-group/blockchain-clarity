@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Clock, Tag } from "lucide-react";
+import { ArrowUpRight, Clock, Tag, Mail, Send } from "lucide-react";
+import { useState } from "react";
 import AnimatedSection from "./AnimatedSection";
 import blogDefi from "@/assets/blog-defi.jpg";
 import blogSecurity from "@/assets/blog-security.jpg";
@@ -125,6 +126,79 @@ const ArticleCard = ({ article }: { article: (typeof articles)[0] }) => (
   </motion.a>
 );
 
+const NewsletterSignup = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "success">("idle");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("success");
+    setEmail("");
+    setTimeout(() => setStatus("idle"), 4000);
+  };
+
+  return (
+    <div className="mt-16 glass-card p-8 md:p-10 relative overflow-hidden">
+      {/* Decorative glow */}
+      <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+
+      <div className="relative flex flex-col md:flex-row md:items-center gap-8">
+        <div className="flex-1">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary mb-4">
+            <Mail className="w-3 h-3" />
+            Newsletter
+          </div>
+          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+            Stay ahead of the curve
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+            Get weekly insights on blockchain trends, DeFi strategies, and smart contract security delivered to your inbox.
+          </p>
+        </div>
+
+        <div className="flex-1 max-w-md w-full">
+          {status === "success" ? (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-3 p-4 rounded-xl bg-primary/10 border border-primary/20"
+            >
+              <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                <Send className="w-4 h-4 text-primary" />
+              </div>
+              <p className="text-sm font-medium text-foreground">
+                You're subscribed! Check your inbox for confirmation.
+              </p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="flex-1 h-12 px-4 rounded-full bg-secondary/60 border border-border/60 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all"
+              />
+              <button
+                type="submit"
+                className="h-12 px-6 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center gap-2"
+              >
+                Subscribe
+                <Send className="w-3.5 h-3.5" />
+              </button>
+            </form>
+          )}
+          <p className="text-xs text-muted-foreground mt-3 ml-1">
+            No spam, ever. Unsubscribe anytime.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Insights = () => {
   return (
     <section id="insights" className="py-24 border-t border-border/30">
@@ -160,6 +234,11 @@ const Insights = () => {
             </AnimatedSection>
           ))}
         </div>
+
+        {/* Newsletter Signup */}
+        <AnimatedSection delay={0.4}>
+          <NewsletterSignup />
+        </AnimatedSection>
       </div>
     </section>
   );
