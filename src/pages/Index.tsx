@@ -11,6 +11,7 @@ import FAQ from "@/components/FAQ";
 import WhyUs from "@/components/WhyUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   return (
@@ -28,6 +29,7 @@ const Index = () => {
       <WhyUs />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
