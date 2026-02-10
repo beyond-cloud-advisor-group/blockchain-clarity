@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Check, Zap, Shield, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "./AnimatedSection";
@@ -7,8 +8,8 @@ const tiers = [
   {
     name: "Starter",
     icon: Zap,
-    price: "$2,500",
-    period: "/month",
+    monthlyPrice: "$2,500",
+    annualPrice: "$2,000",
     description: "Perfect for early-stage projects looking to build a solid blockchain foundation.",
     features: [
       "Smart contract development",
@@ -25,8 +26,8 @@ const tiers = [
   {
     name: "Professional",
     icon: Shield,
-    price: "$7,500",
-    period: "/month",
+    monthlyPrice: "$7,500",
+    annualPrice: "$6,000",
     description: "For growing protocols that need robust infrastructure and multi-chain reach.",
     features: [
       "Everything in Starter",
@@ -45,8 +46,8 @@ const tiers = [
   {
     name: "Enterprise",
     icon: Crown,
-    price: "Custom",
-    period: "",
+    monthlyPrice: "Custom",
+    annualPrice: "Custom",
     description: "Tailored solutions for large-scale operations with dedicated infrastructure.",
     features: [
       "Everything in Professional",
@@ -67,9 +68,11 @@ const tiers = [
 const PricingCard = ({
   tier,
   index,
+  isAnnual,
 }: {
   tier: (typeof tiers)[0];
   index: number;
+  isAnnual: boolean;
 }) => {
   const Icon = tier.icon;
 
@@ -103,8 +106,21 @@ const PricingCard = ({
         </div>
 
         <div className="mb-8">
-          <span className="text-4xl font-bold text-foreground">{tier.price}</span>
-          <span className="text-muted-foreground text-sm">{tier.period}</span>
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={isAnnual ? "annual" : "monthly"}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className="text-4xl font-bold text-foreground inline-block"
+            >
+              {isAnnual ? tier.annualPrice : tier.monthlyPrice}
+            </motion.span>
+          </AnimatePresence>
+          <span className="text-muted-foreground text-sm">
+            {tier.monthlyPrice === "Custom" ? "" : isAnnual ? "/mo, billed yearly" : "/month"}
+          </span>
         </div>
 
         <ul className="space-y-3 mb-8 flex-1">
@@ -129,6 +145,8 @@ const PricingCard = ({
 };
 
 const Pricing = () => {
+  const [isAnnual, setIsAnnual] = useState(false);
+
   return (
     <section id="pricing" className="py-24 border-t border-border/30">
       <div className="container mx-auto px-6">
@@ -140,16 +158,42 @@ const Pricing = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Plans that scale with you
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               From early-stage startups to enterprise protocols — choose the plan
               that fits your project's needs and ambitions.
             </p>
+
+            <div className="inline-flex items-center gap-3 glass-card px-2 py-2 rounded-full">
+              <button
+                onClick={() => setIsAnnual(false)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  !isAnnual
+                    ? "bg-foreground text-background shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setIsAnnual(true)}
+                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 relative ${
+                  isAnnual
+                    ? "bg-foreground text-background shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                Annual
+                <span className="absolute -top-2.5 -right-4 px-1.5 py-0.5 rounded-full bg-primary text-primary-foreground text-[10px] font-bold leading-none">
+                  -20%
+                </span>
+              </button>
+            </div>
           </div>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {tiers.map((tier, index) => (
-            <PricingCard key={tier.name} tier={tier} index={index} />
+            <PricingCard key={tier.name} tier={tier} index={index} isAnnual={isAnnual} />
           ))}
         </div>
       </div>
