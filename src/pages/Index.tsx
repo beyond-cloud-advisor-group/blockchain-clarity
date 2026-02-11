@@ -12,7 +12,6 @@ import WhyUs from "@/components/WhyUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   return (
@@ -31,7 +30,6 @@ const Index = () => {
       <Contact />
       <Footer />
       <ScrollToTop />
-      <CookieConsent />
     </div>
   );
 };
