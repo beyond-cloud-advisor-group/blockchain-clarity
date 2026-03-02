@@ -1,4 +1,4 @@
-import { Blocks, Shield, TrendingUp, Code, Users, Zap } from "lucide-react";
+import { Blocks, Shield, TrendingUp, Code, Users, Zap, ArrowUpRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -42,30 +42,27 @@ const Services = () => {
 
   return (
     <section id="services" className="py-32 relative">
-      {/* Subtle glow */}
       <div 
-        className="glow-orb w-[500px] h-[500px] bg-primary/20"
+        className="glow-orb w-[500px] h-[500px] bg-primary/15"
         style={{ top: '20%', left: '-10%' }}
       />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          {/* Section Label */}
           <AnimatedSection>
             <div className="flex items-center gap-3 mb-8">
               <div className="w-8 h-[1px] bg-primary" />
-              <span className="text-sm text-muted-foreground uppercase tracking-wider font-medium">Services</span>
+              <span className="text-sm text-muted-foreground uppercase tracking-[0.15em] font-medium">Services</span>
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 max-w-2xl">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-16 max-w-2xl leading-tight">
               Everything you need to transform your business.
             </h2>
           </AnimatedSection>
 
-          {/* Services Grid */}
-          <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -76,13 +73,21 @@ const Services = () => {
                   delay: 0.08 * index,
                   ease: [0.21, 0.47, 0.32, 0.98]
                 }}
-                className="group p-8 rounded-2xl bg-secondary/30 border border-border/50 hover:border-border hover:bg-secondary/50 transition-all duration-300 hover-lift"
+                className="group relative p-7 rounded-2xl bg-card/40 border border-border/40 hover:border-primary/20 hover:bg-card/70 transition-all duration-500 hover-lift cursor-pointer"
               >
-                <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors duration-300">
-                  <service.icon className="w-6 h-6 text-foreground group-hover:text-primary transition-colors duration-300" />
+                {/* Hover gradient */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-5">
+                    <div className="w-11 h-11 rounded-xl bg-primary/8 border border-primary/10 flex items-center justify-center group-hover:bg-primary/15 group-hover:border-primary/25 transition-all duration-500">
+                      <service.icon className="w-5 h-5 text-primary/80 group-hover:text-primary transition-colors duration-300" />
+                    </div>
+                    <ArrowUpRight className="w-4 h-4 text-muted-foreground/0 group-hover:text-primary transition-all duration-300 translate-y-1 group-hover:translate-y-0" />
+                  </div>
+                  <h3 className="text-lg font-display font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
