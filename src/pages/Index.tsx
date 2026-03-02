@@ -2,6 +2,7 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import StatsCounter from "@/components/StatsCounter";
 import Services from "@/components/Services";
 import FeatureShowcase from "@/components/FeatureShowcase";
 import Partners from "@/components/Partners";
@@ -22,6 +23,7 @@ const Index = () => {
       <Header />
       <Hero />
       <About />
+      <StatsCounter />
       <Services />
       <FeatureShowcase />
       <Partners />
