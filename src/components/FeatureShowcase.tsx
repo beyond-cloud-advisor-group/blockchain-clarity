@@ -92,7 +92,7 @@
            </AnimatedSection>
  
            <AnimatedSection delay={0.1}>
-             <h2 className="text-4xl md:text-5xl font-bold mb-6 max-w-3xl">
+             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 max-w-3xl">
                Powerful tools for the decentralized future.
              </h2>
              <p className="text-xl text-muted-foreground mb-16 max-w-2xl">

@@ -209,7 +209,7 @@ const Insights = () => {
               <p className="text-sm font-medium text-primary tracking-wider uppercase mb-3">
                 Insights
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
                 Latest from Our Blog
               </h2>
             </div>
