@@ -103,9 +103,9 @@ const Hero = () => {
             <p className="text-xs text-muted-foreground/60">
               Trusted by 50+ enterprises worldwide · $2B+ in assets advised
             </p>
-        </motion.div>
+          </motion.div>
+        </div>
       </motion.div>
-      </div>
     </section>
   );
 };
