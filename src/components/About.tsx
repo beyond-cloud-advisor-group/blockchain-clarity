@@ -3,8 +3,11 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const About = () => {
+  const sectionRef = useRef(null);
   const statsRef = useRef(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-50px" });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
 
   const stats = [
     { value: "50+", label: "Projects delivered" },
