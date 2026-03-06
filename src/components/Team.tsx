@@ -44,11 +44,18 @@ const team = [
 ];
 
 const Team = () => {
+  const sectionRef = useRef(null);
   const gridRef = useRef(null);
   const gridInView = useInView(gridRef, { once: true, margin: "-50px" });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const orbY = useTransform(scrollYProgress, [0, 1], [-50, 50]);
 
   return (
-    <section id="team" className="py-32 relative">
+    <section ref={sectionRef} id="team" className="py-32 relative overflow-hidden">
+      <motion.div
+        className="glow-orb w-[400px] h-[400px] bg-gradient-to-br from-primary/15 to-pink-500/10"
+        style={{ top: '20%', right: '-8%', y: orbY }}
+      />
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
