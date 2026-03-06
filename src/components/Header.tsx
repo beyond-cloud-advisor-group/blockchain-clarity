@@ -72,13 +72,20 @@ const Header = () => {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`px-4 py-2 text-sm rounded-full transition-all duration-300 ${
+                  className={`relative px-4 py-2 text-sm rounded-full transition-colors duration-300 ${
                     isActive
-                      ? "text-primary-foreground bg-primary/15 font-medium"
+                      ? "text-foreground font-medium"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {item.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 rounded-full bg-primary/15 border border-primary/20"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
                 </a>
               );
             })}
