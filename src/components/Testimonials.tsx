@@ -87,7 +87,7 @@ const Testimonials = () => {
             <p className="text-sm font-medium text-primary tracking-wider uppercase mb-3">
               Testimonials
             </p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
               What Our Clients Say
             </h2>
           </div>

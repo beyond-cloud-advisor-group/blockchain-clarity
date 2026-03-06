@@ -18,18 +18,16 @@ import CookieConsent from "@/components/CookieConsent";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background noise-overlay">
+    <div className="min-h-screen bg-background">
       <LoadingScreen />
       <Header />
       <Hero />
       <About />
       <StatsCounter />
-      <div className="section-divider" />
       <Services />
       <FeatureShowcase />
       <Partners />
       <Testimonials />
-      <div className="section-divider" />
       <Pricing />
       <Insights />
       <FAQ />

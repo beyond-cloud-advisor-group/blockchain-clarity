@@ -99,7 +99,7 @@ const PricingCard = ({
           <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
             <Icon className="w-5 h-5 text-primary" />
           </div>
-          <h3 className="text-xl font-display font-bold text-foreground mb-1">{tier.name}</h3>
+          <h3 className="text-xl font-bold text-foreground mb-1">{tier.name}</h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
             {tier.description}
           </p>
@@ -155,7 +155,7 @@ const Pricing = () => {
             <p className="text-sm font-medium text-primary tracking-wider uppercase mb-3">
               Pricing
             </p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Plans that scale with you
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-8">

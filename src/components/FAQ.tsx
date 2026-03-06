@@ -54,7 +54,7 @@ const FAQ = () => {
               <p className="text-sm font-medium text-primary tracking-wider uppercase mb-3">
                 FAQ
               </p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">

@@ -6,7 +6,6 @@ import ThemeToggle from "./ThemeToggle";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -16,12 +15,6 @@ const Header = () => {
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
   ];
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.replace("#", ""));
@@ -57,19 +50,19 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-4 left-0 right-0 z-50 px-4 transition-all duration-500 ${isScrolled ? 'top-3' : 'top-5'}`}>
+    <header className="fixed top-4 left-0 right-0 z-50 px-4">
       <div className="max-w-5xl mx-auto">
-        <nav className={`glass-nav px-4 py-2.5 flex items-center justify-between transition-all duration-500 ${isScrolled ? 'py-2' : 'py-2.5'}`}>
+        <nav className="glass-nav px-4 py-2.5 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:shadow-[0_0_20px_hsl(350_100%_50%_/_0.3)] transition-shadow duration-300">
-              <span className="text-primary-foreground font-display font-bold text-sm">B</span>
+          <a href="#" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">B</span>
             </div>
-            <span className="font-display font-semibold text-sm hidden sm:block">Beyond Cloud</span>
+            <span className="font-semibold text-sm hidden sm:block">Beyond Cloud</span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = activeSection === item.href.replace("#", "");
               return (
@@ -79,7 +72,7 @@ const Header = () => {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`px-4 py-2 text-sm rounded-full transition-all duration-300 ${
                     isActive
-                      ? "text-foreground bg-secondary/80 font-medium"
+                      ? "text-primary-foreground bg-primary/15 font-medium"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -89,7 +82,7 @@ const Header = () => {
             })}
           </div>
 
-          {/* Theme Toggle & CTA */}
+          {/* Theme Toggle & CTA Button */}
           <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
             <Button variant="hero" size="sm">
@@ -97,11 +90,11 @@ const Header = () => {
             </Button>
           </div>
 
-          {/* Mobile */}
+          {/* Mobile: Theme Toggle & Menu Button */}
           <div className="md:hidden flex items-center gap-1">
             <ThemeToggle />
             <button
-              className="text-foreground p-2 hover:bg-secondary rounded-xl transition-colors"
+              className="text-foreground p-2 hover:bg-secondary rounded-lg transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -111,17 +104,17 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-2 glass-card p-3">
-            <nav className="flex flex-col gap-0.5">
+          <div className="md:hidden mt-2 glass-card p-4">
+            <nav className="flex flex-col gap-1">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.replace("#", "");
                 return (
                   <a
                     key={item.label}
                     href={item.href}
-                    className={`px-4 py-3 text-sm rounded-xl transition-all ${
+                    className={`px-4 py-3 text-sm rounded-lg transition-all ${
                       isActive
-                        ? "text-foreground bg-secondary/80 font-medium"
+                        ? "text-primary-foreground bg-primary/15 font-medium"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                     }`}
                     onClick={(e) => handleNavClick(e, item.href)}
@@ -130,7 +123,7 @@ const Header = () => {
                   </a>
                 );
               })}
-              <Button variant="hero" size="default" className="mt-2">
+              <Button variant="hero" size="default" className="mt-3">
                 Get Started
               </Button>
             </nav>
