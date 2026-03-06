@@ -1,6 +1,6 @@
 import { Blocks, Shield, TrendingUp, Code, Users, Zap } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const Services = () => {
