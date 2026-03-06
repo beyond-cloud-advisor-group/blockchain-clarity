@@ -1,52 +1,40 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const Hero = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Gradient Orbs - Raycast style */}
-      <motion.div 
-        className="glow-orb w-[800px] h-[800px] bg-gradient-to-br from-primary/60 via-orange-500/40 to-transparent"
-        style={{ top: '-20%', left: '10%' }}
-        animate={{ 
-          scale: [1, 1.05, 1],
-          opacity: [0.6, 1, 0.6],
-        }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      />
-      <motion.div 
-        className="glow-orb w-[600px] h-[600px] bg-gradient-to-br from-cyan-500/30 via-teal-500/20 to-transparent"
-        style={{ bottom: '-10%', right: '5%' }}
-        animate={{ 
-          scale: [1, 1.08, 1],
-          opacity: [0.5, 0.8, 0.5],
-        }}
-        transition={{ 
-          duration: 8, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 2 
-        }}
-      />
-      <motion.div 
-        className="glow-orb w-[400px] h-[400px] bg-gradient-to-br from-primary/40 to-pink-500/30"
-        style={{ top: '30%', right: '20%' }}
-        animate={{ 
-          scale: [1, 1.1, 1],
-          opacity: [0.4, 0.7, 0.4],
-        }}
-        transition={{ 
-          duration: 5, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: 1 
-        }}
-      />
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <motion.div style={{ y: bgY }} className="absolute inset-0">
+        <motion.div 
+          className="glow-orb w-[800px] h-[800px] bg-gradient-to-br from-primary/60 via-orange-500/40 to-transparent"
+          style={{ top: '-20%', left: '10%' }}
+          animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="glow-orb w-[600px] h-[600px] bg-gradient-to-br from-cyan-500/30 via-teal-500/20 to-transparent"
+          style={{ bottom: '-10%', right: '5%' }}
+          animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+        <motion.div 
+          className="glow-orb w-[400px] h-[400px] bg-gradient-to-br from-primary/40 to-pink-500/30"
+          style={{ top: '30%', right: '20%' }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+      </motion.div>
 
       {/* Diagonal gradient lines effect */}
       <div className="absolute inset-0 opacity-30">
@@ -64,7 +52,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <motion.div style={{ y: contentY, opacity }} className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline */}
           <motion.h1 
@@ -117,7 +105,7 @@ const Hero = () => {
             </p>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

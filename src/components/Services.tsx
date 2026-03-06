@@ -1,11 +1,15 @@
 import { Blocks, Shield, TrendingUp, Code, Users, Zap } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const Services = () => {
+  const sectionRef = useRef(null);
   const gridRef = useRef(null);
   const gridInView = useInView(gridRef, { once: true, margin: "-50px" });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const orbY1 = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+  const orbY2 = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   const services = [
     {
@@ -41,11 +45,14 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-32 relative">
-      {/* Subtle glow */}
-      <div 
+    <section ref={sectionRef} id="services" className="py-32 relative overflow-hidden">
+      <motion.div 
         className="glow-orb w-[500px] h-[500px] bg-primary/20"
-        style={{ top: '20%', left: '-10%' }}
+        style={{ top: '20%', left: '-10%', y: orbY1 }}
+      />
+      <motion.div 
+        className="glow-orb w-[300px] h-[300px] bg-gradient-to-br from-cyan-500/15 to-teal-500/10"
+        style={{ bottom: '10%', right: '-5%', y: orbY2 }}
       />
 
       <div className="container mx-auto px-6 relative z-10">
