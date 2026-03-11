@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, Zap, Shield, Crown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "./AnimatedSection";
+import pricingBg from "@/assets/pricing-bg.jpg";
 
 const tiers = [
   {
