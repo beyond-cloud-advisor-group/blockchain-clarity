@@ -1,6 +1,7 @@
 import AnimatedSection from "./AnimatedSection";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import aboutBg from "@/assets/about-bg.jpg";
 
 const About = () => {
   const sectionRef = useRef(null);
