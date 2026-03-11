@@ -8,7 +8,7 @@ const About = () => {
   const statsRef = useRef(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-50px" });
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-  const orbY = useTransform(scrollYProgress, [0, 1], [-60, 60]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
 
   const stats = [
     { value: "50+", label: "Projects delivered" },
@@ -18,7 +18,7 @@ const About = () => {
 
   return (
     <section ref={sectionRef} id="about" className="py-32 relative overflow-hidden">
-      <motion.div className="absolute inset-0" style={{ y: useTransform(scrollYProgress, [0, 1], ['-5%', '5%']) }}>
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img src={aboutBg} alt="" className="w-full h-[120%] object-cover opacity-20 dark:opacity-15" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       </motion.div>

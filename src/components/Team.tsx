@@ -59,7 +59,7 @@ const Team = () => {
       </motion.div>
       <motion.div
         className="glow-orb w-[400px] h-[400px] bg-gradient-to-br from-primary/15 to-pink-500/10"
-        style={{ top: '20%', right: '-8%', y: orbY }}
+        style={{ top: '20%', right: '-8%' }}
       />
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">

@@ -10,7 +10,7 @@ const Services = () => {
   const gridInView = useInView(gridRef, { once: true, margin: "-50px" });
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
   const orbY1 = useTransform(scrollYProgress, [0, 1], [-80, 80]);
-  const orbY2 = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
 
   const services = [
     {
@@ -47,7 +47,7 @@ const Services = () => {
 
   return (
     <section ref={sectionRef} id="services" className="py-32 relative overflow-hidden">
-      <motion.div className="absolute inset-0" style={{ y: useTransform(scrollYProgress, [0, 1], ['-5%', '5%']) }}>
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img src={servicesBg} alt="" className="w-full h-[120%] object-cover opacity-20 dark:opacity-15" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       </motion.div>
