@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import contactBg from "@/assets/contact-bg.jpg";
 
 const Contact = () => {
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={contactBg} alt="" className="w-full h-full object-cover opacity-15 dark:opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      </div>
       {/* Background glow */}
       <div 
         className="glow-orb w-[600px] h-[600px] bg-primary/15"

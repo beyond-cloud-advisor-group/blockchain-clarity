@@ -2,6 +2,7 @@ import { Blocks, Shield, TrendingUp, Code, Users, Zap } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import servicesBg from "@/assets/services-bg.jpg";
 
 const Services = () => {
   const sectionRef = useRef(null);
@@ -46,6 +47,10 @@ const Services = () => {
 
   return (
     <section ref={sectionRef} id="services" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={servicesBg} alt="" className="w-full h-full object-cover opacity-20 dark:opacity-15" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      </div>
       <motion.div 
         className="glow-orb w-[500px] h-[500px] bg-primary/20"
         style={{ top: '20%', left: '-10%', y: orbY1 }}
