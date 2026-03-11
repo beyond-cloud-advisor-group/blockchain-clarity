@@ -2,6 +2,7 @@ import { Blocks, Shield, TrendingUp, Code, Users, Zap } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import servicesBg from "@/assets/services-bg.jpg";
 
 const Services = () => {
   const sectionRef = useRef(null);
