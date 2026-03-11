@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import contactBg from "@/assets/contact-bg.jpg";
 
 const Contact = () => {
   return (
