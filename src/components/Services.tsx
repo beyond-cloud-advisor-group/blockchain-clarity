@@ -9,7 +9,7 @@ const Services = () => {
   const gridRef = useRef(null);
   const gridInView = useInView(gridRef, { once: true, margin: "-50px" });
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-  const orbY1 = useTransform(scrollYProgress, [0, 1], [-80, 80]);
+  
   const bgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
 
   const services = [
