@@ -145,7 +145,8 @@ const PricingCard = ({
   );
 };
 
-const Pricing = () => {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
   const [isAnnual, setIsAnnual] = useState(false);
 
   return (
