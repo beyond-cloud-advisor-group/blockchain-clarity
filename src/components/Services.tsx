@@ -53,7 +53,7 @@ const Services = () => {
       </motion.div>
       <motion.div 
         className="glow-orb w-[500px] h-[500px] bg-primary/20"
-        style={{ top: '20%', left: '-10%', y: orbY1 }}
+        style={{ top: '20%', left: '-10%' }}
       />
       <motion.div 
         className="glow-orb w-[300px] h-[300px] bg-gradient-to-br from-cyan-500/15 to-teal-500/10"
