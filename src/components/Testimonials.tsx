@@ -80,10 +80,11 @@ const Testimonials = () => {
 
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
 
   return (
     <section ref={sectionRef} className="py-24 relative overflow-hidden">
-      <motion.div className="absolute inset-0" style={{ y: useTransform(scrollYProgress, [0, 1], ['-5%', '5%']) }}>
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img src={testimonialsBg} alt="" className="w-full h-[120%] object-cover opacity-15 dark:opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       </motion.div>
