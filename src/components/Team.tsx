@@ -7,6 +7,7 @@ import teamSofia from "@/assets/team-sofia.jpg";
 import teamDavid from "@/assets/team-david.jpg";
 import teamKevin from "@/assets/team-kevin.jpg";
 import teamRachel from "@/assets/team-rachel.jpg";
+import teamBg from "@/assets/team-bg.jpg";
 
 const team = [
   {
