@@ -9,8 +9,8 @@ const Services = () => {
   const gridRef = useRef(null);
   const gridInView = useInView(gridRef, { once: true, margin: "-50px" });
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-  const orbY1 = useTransform(scrollYProgress, [0, 1], [-80, 80]);
-  const orbY2 = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
 
   const services = [
     {
@@ -47,17 +47,17 @@ const Services = () => {
 
   return (
     <section ref={sectionRef} id="services" className="py-32 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={servicesBg} alt="" className="w-full h-full object-cover opacity-20 dark:opacity-15" />
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <img src={servicesBg} alt="" className="w-full h-[120%] object-cover opacity-20 dark:opacity-15" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
+      </motion.div>
       <motion.div 
         className="glow-orb w-[500px] h-[500px] bg-primary/20"
-        style={{ top: '20%', left: '-10%', y: orbY1 }}
+        style={{ top: '20%', left: '-10%' }}
       />
       <motion.div 
         className="glow-orb w-[300px] h-[300px] bg-gradient-to-br from-cyan-500/15 to-teal-500/10"
-        style={{ bottom: '10%', right: '-5%', y: orbY2 }}
+        style={{ bottom: '10%', right: '-5%' }}
       />
 
       <div className="container mx-auto px-6 relative z-10">

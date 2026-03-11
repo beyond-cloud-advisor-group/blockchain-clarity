@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 import testimonialsBg from "@/assets/testimonials-bg.jpg";
@@ -78,12 +78,16 @@ const Testimonials = () => {
     exit: (dir: number) => ({ opacity: 0, x: dir * -60 }),
   };
 
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
+
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={testimonialsBg} alt="" className="w-full h-full object-cover opacity-15 dark:opacity-10" />
+    <section ref={sectionRef} className="py-24 relative overflow-hidden">
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <img src={testimonialsBg} alt="" className="w-full h-[120%] object-cover opacity-15 dark:opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
+      </motion.div>
       <div className="glow-orb w-[500px] h-[500px] bg-primary/8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
