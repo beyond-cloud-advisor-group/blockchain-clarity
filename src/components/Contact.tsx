@@ -1,15 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import AnimatedSection from "./AnimatedSection";
 import contactBg from "@/assets/contact-bg.jpg";
 
 const Contact = () => {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={contactBg} alt="" className="w-full h-full object-cover opacity-15 dark:opacity-10" />
+    <section ref={sectionRef} id="contact" className="py-32 relative overflow-hidden">
+      <motion.div className="absolute inset-0" style={{ y: useTransform(scrollYProgress, [0, 1], ['-5%', '5%']) }}>
+        <img src={contactBg} alt="" className="w-full h-[120%] object-cover opacity-15 dark:opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
+      </motion.div>
       {/* Background glow */}
       <div 
         className="glow-orb w-[600px] h-[600px] bg-primary/15"

@@ -53,10 +53,10 @@ const Team = () => {
 
   return (
     <section ref={sectionRef} id="team" className="py-32 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={teamBg} alt="" className="w-full h-full object-cover opacity-15 dark:opacity-10" />
+      <motion.div className="absolute inset-0" style={{ y: useTransform(scrollYProgress, [0, 1], ['-5%', '5%']) }}>
+        <img src={teamBg} alt="" className="w-full h-[120%] object-cover opacity-15 dark:opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
+      </motion.div>
       <motion.div
         className="glow-orb w-[400px] h-[400px] bg-gradient-to-br from-primary/15 to-pink-500/10"
         style={{ top: '20%', right: '-8%', y: orbY }}

@@ -149,11 +149,11 @@ const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="py-24 border-t border-border/30 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={pricingBg} alt="" className="w-full h-full object-cover opacity-15 dark:opacity-10" />
+    <section ref={sectionRef} id="pricing" className="py-24 border-t border-border/30 relative overflow-hidden">
+      <motion.div className="absolute inset-0" style={{ y: useTransform(scrollYProgress, [0, 1], ['-5%', '5%']) }}>
+        <img src={pricingBg} alt="" className="w-full h-[120%] object-cover opacity-15 dark:opacity-10" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-      </div>
+      </motion.div>
       <div className="container mx-auto px-6 relative z-10">
         <AnimatedSection>
           <div className="text-center max-w-2xl mx-auto mb-16">
