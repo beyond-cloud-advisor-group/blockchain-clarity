@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   const ref = useRef(null);
