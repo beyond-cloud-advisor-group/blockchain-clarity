@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import testimonialsBg from "@/assets/testimonials-bg.jpg";
 
 import sarahImg from "@/assets/testimonial-sarah.jpg";
 import marcusImg from "@/assets/testimonial-marcus.jpg";
