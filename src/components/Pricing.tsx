@@ -149,8 +149,12 @@ const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="py-24 border-t border-border/30">
-      <div className="container mx-auto px-6">
+    <section id="pricing" className="py-24 border-t border-border/30 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={pricingBg} alt="" className="w-full h-full object-cover opacity-15 dark:opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      </div>
+      <div className="container mx-auto px-6 relative z-10">
         <AnimatedSection>
           <div className="text-center max-w-2xl mx-auto mb-16">
             <p className="text-sm font-medium text-primary tracking-wider uppercase mb-3">

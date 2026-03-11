@@ -80,6 +80,10 @@ const Testimonials = () => {
 
   return (
     <section className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={testimonialsBg} alt="" className="w-full h-full object-cover opacity-15 dark:opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      </div>
       <div className="glow-orb w-[500px] h-[500px] bg-primary/8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
       <div className="container mx-auto px-6 relative z-10">
