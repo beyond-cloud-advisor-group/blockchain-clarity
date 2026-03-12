@@ -144,17 +144,37 @@ const Header = () => {
           <div className="md:hidden mt-2 glass-card p-4">
             <nav className="flex flex-col gap-1">
               {navItems.map((item) => {
-                const isActive = activeSection === item.href.replace("#", "");
+                const isPageLink = (item as any).isPage;
+                const isActive = isPageLink
+                  ? location.pathname === item.href
+                  : isHome && activeSection === item.href.replace("#", "");
+
+                if (isPageLink) {
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className={`px-4 py-3 text-sm rounded-lg transition-all ${
+                        isActive ? "text-primary-foreground bg-primary/15 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+
                 return (
                   <a
                     key={item.label}
-                    href={item.href}
+                    href={isHome ? item.href : `/${item.href}`}
                     className={`px-4 py-3 text-sm rounded-lg transition-all ${
-                      isActive
-                        ? "text-primary-foreground bg-primary/15 font-medium"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                      isActive ? "text-primary-foreground bg-primary/15 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                     }`}
-                    onClick={(e) => handleNavClick(e, item.href)}
+                    onClick={(e) => {
+                      if (isHome) handleNavClick(e, item.href);
+                      setIsMenuOpen(false);
+                    }}
                   >
                     {item.label}
                   </a>
