@@ -2,11 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -15,6 +18,7 @@ const Header = () => {
     { label: "Insights", href: "#insights" },
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
+    { label: "Jobs", href: "/jobs", isPage: true },
   ];
 
   useEffect(() => {
