@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { AnimatePresence } from "framer-motion";
 import PageTransition from "./components/PageTransition";
 import Index from "./pages/Index";
+import Jobs from "./pages/Jobs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+        <Route path="/jobs" element={<PageTransition><Jobs /></PageTransition>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>

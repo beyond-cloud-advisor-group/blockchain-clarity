@@ -2,11 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -15,6 +18,7 @@ const Header = () => {
     { label: "Insights", href: "#insights" },
     { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
+    { label: "Jobs", href: "/jobs", isPage: true },
   ];
 
   useEffect(() => {
@@ -55,26 +59,51 @@ const Header = () => {
       <div className="max-w-5xl mx-auto">
         <nav className="glass-nav px-4 py-2.5 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">B</span>
             </div>
             <span className="font-semibold text-sm hidden sm:block">Beyond Cloud</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.replace("#", "");
+              const isPageLink = (item as any).isPage;
+              const isActive = isPageLink
+                ? location.pathname === item.href
+                : isHome && activeSection === item.href.replace("#", "");
+
+              if (isPageLink) {
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className={`relative px-4 py-2 text-sm rounded-full transition-colors duration-300 ${
+                      isActive ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 rounded-full bg-primary/15 border border-primary/20"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </Link>
+                );
+              }
+
               return (
                 <a
                   key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  href={isHome ? item.href : `/${item.href}`}
+                  onClick={(e) => {
+                    if (isHome) handleNavClick(e, item.href);
+                  }}
                   className={`relative px-4 py-2 text-sm rounded-full transition-colors duration-300 ${
-                    isActive
-                      ? "text-foreground font-medium"
-                      : "text-muted-foreground hover:text-foreground"
+                    isActive ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {isActive && (
@@ -115,17 +144,37 @@ const Header = () => {
           <div className="md:hidden mt-2 glass-card p-4">
             <nav className="flex flex-col gap-1">
               {navItems.map((item) => {
-                const isActive = activeSection === item.href.replace("#", "");
+                const isPageLink = (item as any).isPage;
+                const isActive = isPageLink
+                  ? location.pathname === item.href
+                  : isHome && activeSection === item.href.replace("#", "");
+
+                if (isPageLink) {
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className={`px-4 py-3 text-sm rounded-lg transition-all ${
+                        isActive ? "text-primary-foreground bg-primary/15 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                      }`}
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+
                 return (
                   <a
                     key={item.label}
-                    href={item.href}
+                    href={isHome ? item.href : `/${item.href}`}
                     className={`px-4 py-3 text-sm rounded-lg transition-all ${
-                      isActive
-                        ? "text-primary-foreground bg-primary/15 font-medium"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                      isActive ? "text-primary-foreground bg-primary/15 font-medium" : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                     }`}
-                    onClick={(e) => handleNavClick(e, item.href)}
+                    onClick={(e) => {
+                      if (isHome) handleNavClick(e, item.href);
+                      setIsMenuOpen(false);
+                    }}
                   >
                     {item.label}
                   </a>
