@@ -85,7 +85,7 @@ const Testimonials = () => {
   return (
     <section ref={sectionRef} className="py-24 relative overflow-hidden">
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        <img src={testimonialsBg} alt="" className="w-full h-[120%] object-cover opacity-15 dark:opacity-10" />
+        <img src={testimonialsBg} alt="" className="w-full h-[120%] object-cover opacity-35 dark:opacity-25" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       </motion.div>
       <div className="glow-orb w-[500px] h-[500px] bg-primary/8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
