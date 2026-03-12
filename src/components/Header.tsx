@@ -59,12 +59,12 @@ const Header = () => {
       <div className="max-w-5xl mx-auto">
         <nav className="glass-nav px-4 py-2.5 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">B</span>
             </div>
             <span className="font-semibold text-sm hidden sm:block">Beyond Cloud</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
