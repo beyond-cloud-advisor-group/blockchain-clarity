@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <section ref={sectionRef} id="contact" className="py-32 relative overflow-hidden">
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        <img src={contactBg} alt="" className="w-full h-[120%] object-cover opacity-15 dark:opacity-10" />
+        <img src={contactBg} alt="" <img src={contactBg} alt="" className="w-full h-[120%] object-cover opacity-35 dark:opacity-25" /> />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       </motion.div>
       {/* Background glow */}
