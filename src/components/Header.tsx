@@ -69,16 +69,41 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href.replace("#", "");
+              const isPageLink = (item as any).isPage;
+              const isActive = isPageLink
+                ? location.pathname === item.href
+                : isHome && activeSection === item.href.replace("#", "");
+
+              if (isPageLink) {
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className={`relative px-4 py-2 text-sm rounded-full transition-colors duration-300 ${
+                      isActive ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 rounded-full bg-primary/15 border border-primary/20"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </Link>
+                );
+              }
+
               return (
                 <a
                   key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  href={isHome ? item.href : `/${item.href}`}
+                  onClick={(e) => {
+                    if (isHome) handleNavClick(e, item.href);
+                  }}
                   className={`relative px-4 py-2 text-sm rounded-full transition-colors duration-300 ${
-                    isActive
-                      ? "text-foreground font-medium"
-                      : "text-muted-foreground hover:text-foreground"
+                    isActive ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {isActive && (
