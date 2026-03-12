@@ -48,7 +48,7 @@ const Services = () => {
   return (
     <section ref={sectionRef} id="services" className="py-32 relative overflow-hidden">
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        <img src={servicesBg} alt="" className="w-full h-[120%] object-cover opacity-20 dark:opacity-15" />
+        <img src={servicesBg} alt="" className="w-full h-[120%] object-cover opacity-40 dark:opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       </motion.div>
       <motion.div 
