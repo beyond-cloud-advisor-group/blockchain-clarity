@@ -222,7 +222,7 @@ const Jobs = () => {
                         </span>
                       </div>
                     </div>
-                    <Button variant="heroOutline" size="sm" className="shrink-0 self-start sm:self-center">
+                    <Button variant="heroOutline" size="sm" className="shrink-0 self-start sm:self-center" onClick={() => setApplyJob(job)}>
                       Apply
                       <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </Button>
