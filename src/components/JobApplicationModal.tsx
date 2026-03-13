@@ -58,7 +58,7 @@ const JobApplicationModal = ({ open, onOpenChange, jobTitle }: JobApplicationMod
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" required placeholder="jane@example.com" />
+            <Input id="email" name="email" type="email" required placeholder="jane@example.com" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="linkedin">LinkedIn / Portfolio URL</Label>
