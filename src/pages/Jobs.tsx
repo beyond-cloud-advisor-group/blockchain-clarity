@@ -4,6 +4,7 @@ import { ArrowRight, MapPin, Clock, Briefcase, Search, Filter } from "lucide-rea
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import JobApplicationModal from "@/components/JobApplicationModal";
 import AnimatedSection from "@/components/AnimatedSection";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
