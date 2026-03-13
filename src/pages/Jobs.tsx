@@ -77,6 +77,7 @@ const Jobs = () => {
 
   const [activeDept, setActiveDept] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [applyJob, setApplyJob] = useState<{ title: string } | null>(null);
 
   const filtered = jobs.filter((job) => {
     const matchDept = activeDept === "All" || job.department === activeDept;
