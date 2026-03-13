@@ -249,6 +249,11 @@ const Jobs = () => {
       </section>
 
       <Footer />
+      <JobApplicationModal
+        open={!!applyJob}
+        onOpenChange={(open) => !open && setApplyJob(null)}
+        jobTitle={applyJob?.title ?? ""}
+      />
     </div>
   );
 };
