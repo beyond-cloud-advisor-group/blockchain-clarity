@@ -66,7 +66,7 @@ const JobApplicationModal = ({ open, onOpenChange, jobTitle }: JobApplicationMod
           </div>
           <div className="space-y-2">
             <Label htmlFor="message">Why are you interested?</Label>
-            <Textarea id="message" rows={3} placeholder="Tell us a bit about yourself..." />
+            <Textarea id="message" name="message" rows={3} placeholder="Tell us a bit about yourself..." />
           </div>
           <Button type="submit" variant="hero" className="w-full" disabled={submitting}>
             {submitting ? "Submitting..." : "Submit Application"}

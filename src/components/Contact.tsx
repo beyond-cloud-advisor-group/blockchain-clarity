@@ -64,11 +64,11 @@ const Contact = () => {
           <AnimatedSection delay={0.4}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-12 border-t border-border/50">
               <a 
-                href="mailto:hello@beyondcloud.io" 
+                href="mailto:hiring@beyondcloudadvisor.com" 
                 className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                <span>hello@beyondcloud.io</span>
+                <span>hiring@beyondcloudadvisor.com</span>
               </a>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="w-5 h-5" />
