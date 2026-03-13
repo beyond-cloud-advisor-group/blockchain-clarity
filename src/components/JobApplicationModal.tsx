@@ -62,7 +62,7 @@ const JobApplicationModal = ({ open, onOpenChange, jobTitle }: JobApplicationMod
           </div>
           <div className="space-y-2">
             <Label htmlFor="linkedin">LinkedIn / Portfolio URL</Label>
-            <Input id="linkedin" placeholder="https://linkedin.com/in/..." />
+            <Input id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/..." />
           </div>
           <div className="space-y-2">
             <Label htmlFor="message">Why are you interested?</Label>
