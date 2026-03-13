@@ -20,14 +20,28 @@ const JobApplicationModal = ({ open, onOpenChange, jobTitle }: JobApplicationMod
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const linkedin = formData.get("linkedin") as string;
+    const message = formData.get("message") as string;
+
+    const subject = encodeURIComponent(`Job Application: ${jobTitle} — ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nLinkedIn / Portfolio: ${linkedin || "N/A"}\n\nWhy interested:\n${message || "N/A"}`
+    );
+    const mailto = `mailto:hr@dantelabs.us,hiring@beyondcloudadvisor.com?subject=${subject}&body=${body}`;
+    window.open(mailto, "_blank");
+
     setTimeout(() => {
       setSubmitting(false);
       onOpenChange(false);
       toast({
         title: "Application submitted!",
-        description: `Your application for ${jobTitle} has been received. We'll be in touch soon.`,
+        description: `Your email client should open with your application for ${jobTitle}. Please send the email to complete your application.`,
       });
-    }, 1000);
+    }, 500);
   };
 
   return (
@@ -40,19 +54,19 @@ const JobApplicationModal = ({ open, onOpenChange, jobTitle }: JobApplicationMod
         <form onSubmit={handleSubmit} className="space-y-4 pt-2">
           <div className="space-y-2">
             <Label htmlFor="name">Full Name</Label>
-            <Input id="name" required placeholder="Jane Doe" />
+            <Input id="name" name="name" required placeholder="Jane Doe" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" required placeholder="jane@example.com" />
+            <Input id="email" name="email" type="email" required placeholder="jane@example.com" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="linkedin">LinkedIn / Portfolio URL</Label>
-            <Input id="linkedin" placeholder="https://linkedin.com/in/..." />
+            <Input id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/..." />
           </div>
           <div className="space-y-2">
             <Label htmlFor="message">Why are you interested?</Label>
-            <Textarea id="message" rows={3} placeholder="Tell us a bit about yourself..." />
+            <Textarea id="message" name="message" rows={3} placeholder="Tell us a bit about yourself..." />
           </div>
           <Button type="submit" variant="hero" className="w-full" disabled={submitting}>
             {submitting ? "Submitting..." : "Submit Application"}
