@@ -20,14 +20,28 @@ const JobApplicationModal = ({ open, onOpenChange, jobTitle }: JobApplicationMod
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const linkedin = formData.get("linkedin") as string;
+    const message = formData.get("message") as string;
+
+    const subject = encodeURIComponent(`Job Application: ${jobTitle} — ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nLinkedIn / Portfolio: ${linkedin || "N/A"}\n\nWhy interested:\n${message || "N/A"}`
+    );
+    const mailto = `mailto:hr@dantelabs.us,hiring@beyondcloudadvisor.com?subject=${subject}&body=${body}`;
+    window.open(mailto, "_blank");
+
     setTimeout(() => {
       setSubmitting(false);
       onOpenChange(false);
       toast({
         title: "Application submitted!",
-        description: `Your application for ${jobTitle} has been received. We'll be in touch soon.`,
+        description: `Your email client should open with your application for ${jobTitle}. Please send the email to complete your application.`,
       });
-    }, 1000);
+    }, 500);
   };
 
   return (
