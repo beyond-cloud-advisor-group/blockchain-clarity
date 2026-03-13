@@ -32,7 +32,7 @@ const JobApplicationModal = ({ open, onOpenChange, jobTitle }: JobApplicationMod
       `Name: ${name}\nEmail: ${email}\nLinkedIn / Portfolio: ${linkedin || "N/A"}\n\nWhy interested:\n${message || "N/A"}`
     );
     const mailto = `mailto:hr@dantelabs.us,hiring@beyondcloudadvisor.com?subject=${subject}&body=${body}`;
-    window.open(mailto, "_blank");
+    window.location.href = mailto;
 
     setTimeout(() => {
       setSubmitting(false);
